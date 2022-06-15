@@ -5,35 +5,40 @@
 {% endblock %}
 
 {% block body%}
-<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Short.ly</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+<div class="wrapper d-flex flex-column">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Short.ly</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Shorten</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#">Expand</a>
-          <a class="nav-link" href="#">About</a>
-        </div>
-      </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">About</a>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
-<main>
-    <div class="d-flex align-items-center flex-column justify-content-center h-100 bg-dark text-white" id="header">
-        <h1 class="display-4">Hello.</h1>
-        <form>
-            <div class="form-group">
-                <input class="form-control form-control-lg" placeholder="Email" type="text">
-            </div>
-            <div class="form-group">
-                <input class="form-control form-control-lg" placeholder="Password" type="text">
-            </div>
-            <div class="form-group">
-                <button class="btn btn-info btn-lg btn-block">Sign In</button>
-            </div>
-        </form>
-    </div>
-</main>
+<div class="px-4 py-5 my-auto text-center">
+  <h1 class="display-5 fw-bold">URL Shortener</h1>
+  <div class="col-lg-6 mx-auto">
+    <form action="/shorten" method="post">
+      <input type="text" class="form-control mb-3" placeholder="Enter URL...">
+      <input type="submit" class="btn btn-secondary" value="Shorten URL">
+    </form>
+  </div>
+</div>
+<footer class="bg-dark text-light text-center py-2">
+  Made with ❤️ by <a href="https://github.com/dawidduraj" class="link-light">Dawid Duraj</a>
+</footer>
+</div>
+
 {% endblock %}
