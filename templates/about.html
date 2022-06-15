@@ -18,22 +18,19 @@
           <a class="nav-link" href="/">Shorten</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">Expand</a>
+          <a class="nav-link" href={{url_for("expand")}}>Expand</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href={{url_for("about")}}>About</a>
+          <a class="nav-link active" href="#">About</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 <div class="px-4 py-5 my-auto text-center">
-  <h1 class="display-5 fw-bold">URL Expander</h1>
+  <h1 class="display-5 fw-bold">About</h1>
   <div class="col-lg-6 mx-auto">
-    <form action="/shorten" method="post">
-      <input type="text" class="form-control mb-3" placeholder="Enter URL...">
-      <input type="submit" class="btn btn-secondary" value="Expand URL">
-    </form>
+      <p>Hello World</p>
   </div>
 </div>
 <footer class="bg-dark text-light text-center py-2">
