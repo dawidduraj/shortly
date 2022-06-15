@@ -1,0 +1,39 @@
+{% extends "template.html"%}
+
+{% block head%}
+<title>Shortly - URL Shortener</title>
+{% endblock %}
+
+{% block body%}
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Short.ly</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link active" aria-current="page" href="#">Shorten</a>
+          <a class="nav-link" href="#">Expand</a>
+          <a class="nav-link" href="#">About</a>
+        </div>
+      </div>
+    </div>
+</nav>
+<main>
+    <div class="d-flex align-items-center flex-column justify-content-center h-100 bg-dark text-white" id="header">
+        <h1 class="display-4">Hello.</h1>
+        <form>
+            <div class="form-group">
+                <input class="form-control form-control-lg" placeholder="Email" type="text">
+            </div>
+            <div class="form-group">
+                <input class="form-control form-control-lg" placeholder="Password" type="text">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-info btn-lg btn-block">Sign In</button>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}
