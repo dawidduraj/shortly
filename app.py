@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -7,9 +7,14 @@ app = Flask(__name__)
 def shorten():
     return render_template("index.html")
 
-@app.route("/expand")
+@app.route("/expand", methods=["POST","GET"])
 def expand():
-    return render_template("expand.html")
+    if request.method == "POST":
+        url = request.form["url"]
+        print(url)
+        return "test"
+    else:
+        return render_template("expand.html")
 
 @app.route("/about")
 def about():
