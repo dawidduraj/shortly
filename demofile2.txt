@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/15564523/how-to-capture-redirected-url-in-python

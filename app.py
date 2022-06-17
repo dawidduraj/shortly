@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+import requests
 
 app = Flask(__name__)
 
@@ -10,8 +11,10 @@ def shorten():
 @app.route("/expand", methods=["POST","GET"])
 def expand():
     if request.method == "POST":
+        #Make http request and grab url header
         url = request.form["url"]
-        print(url)
+        response = requests.get(url = url)
+        print(response.url)
         return "test"
     else:
         return render_template("expand.html")
