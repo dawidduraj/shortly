@@ -11,11 +11,21 @@ def shorten():
 @app.route("/expand", methods=["POST","GET"])
 def expand():
     if request.method == "POST":
-        #Make http request and grab url header
+
+        #URL validate
         url = request.form["url"]
-        response = requests.get(url = url)
-        print(response.url)
-        return "test"
+        if(url[0 : 4] == "www."):
+            url = "https://"+url
+            print(url)
+        else:
+            url = "https://www."+url
+        
+        #make http request
+        try:
+            response = requests.get(url = url)
+            return response.url
+        except:
+            return "Incorrect URL"
     else:
         return render_template("expand.html")
 
