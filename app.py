@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, flash, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import requests
 
@@ -14,18 +14,18 @@ def expand():
 
         #URL validate
         url = request.form["url"]
-        if(url[0 : 4] == "www."):
-            url = "https://"+url
+        if("www." in url):
+            url = f'https://{url}/'
             print(url)
-        else:
-            url = "https://www."+url
+        elif ("https://" not in url):
+            url = f'https://www.{url}/'
         
         #make http request
         try:
             response = requests.get(url = url)
-            return response.url
+            return render_template("expand.html", response = response.url, url=url)
         except:
-            return "Incorrect URL"
+            return render_template("expand.html", url=url)
     else:
         return render_template("expand.html")
 
