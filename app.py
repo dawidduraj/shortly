@@ -1,5 +1,7 @@
 from importlib.resources import path
-from flask import Flask, render_template, request
+import random
+import string
+from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 import requests
 
@@ -15,16 +17,26 @@ class Link(db.Model):
 
 @app.route("/", methods=["POST","GET"])
 def shorten():
+    if request.method == "POST":
 
-    #URL validate
-    url = request.form["url"]
-    if("www." in url):
-        url = f'https://{url}/'
-        print(url)
-    elif ("https://" not in url):
-        url = f'https://www.{url}/'
-    
-    return render_template("index.html")
+        #URL validate
+        destination = request.form["url"]
+        if("www." in destination):
+            destination = f'https://{destination}/'
+            print(destination)
+        elif ("https://" not in destination):
+            destination = f'https://www.{destination}/'
+
+        #check if url is active
+        try:
+            requests.get(url = destination).status_code
+        except:
+            return "error"
+        
+        path = ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=6))
+        print(request.base_url + path)
+    else:
+        return render_template("index.html")
 
 @app.route("/expand", methods=["POST","GET"])
 def expand():
@@ -33,10 +45,10 @@ def expand():
         #URL validate
         url = request.form["url"]
         if("www." in url):
-            url = f'https://{url}/'
+            url = f'http://{url}/'
             print(url)
-        elif ("https://" not in url):
-            url = f'https://www.{url}/'
+        elif ("https://" and "http://" not in url):
+            url = f'http://www.{url}/'
         
         #make http request
         try:
@@ -50,6 +62,11 @@ def expand():
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+
+@app.route("/<path>")
+def forward(path):
+    return redirect("http://google.de")
 
 if __name__ == "__main__":
     app.run(debug=True)
