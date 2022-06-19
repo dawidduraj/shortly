@@ -34,6 +34,11 @@
       <input type="text" class="form-control mb-3" placeholder="Enter URL...">
       <input type="submit" class="btn btn-secondary" value="Shorten URL">
     </form>
+    {% if url and response %}
+    <br><p class="text-success">The URL <a class="text-success" href={{url}} style="font-weight: bold;">{{url}}</a> points to <a class="text-success" href={{response}} style="font-weight: bold;">{{response}}</a></p>
+    {% elif url and not response%}
+    <br><p class="text-danger">The URL <a class="text-danger" href={{url}} style="font-weight: bold;">{{url}}</a> is invalid or could not be loaded.</p>
+    {% endif %}
   </div>
 </div>
 <footer class="bg-dark text-light text-center py-2">
