@@ -23,7 +23,7 @@ def shorten():
         if("www." in destination):
             destination = f'https://{destination}/'
             print(destination)
-        elif ("https://" and "http://" not in destination):
+        elif ("https://" not in destination and "http://" not in destination):
             destination = f'https://www.{destination}/'
 
         #check if url is active
@@ -46,8 +46,7 @@ def expand():
         url = request.form["url"]
         if("www." in url):
             url = f'http://{url}/'
-            print(url)
-        elif ("https://" and "http://" not in url):
+        elif ("https://" not in url and "http://" not in url):
             url = f'http://www.{url}/'
         
         #make http request
