@@ -14,7 +14,6 @@ class Link(db.Model):
     source = db.Column(db.String(200), nullable=False)
     path = db.Column(db.String(6), nullable=False)
 
-
 @app.route("/", methods=["POST","GET"])
 def shorten():
     if request.method == "POST":
@@ -24,17 +23,18 @@ def shorten():
         if("www." in destination):
             destination = f'https://{destination}/'
             print(destination)
-        elif ("https://" not in destination):
+        elif ("https://" and "http://" not in destination):
             destination = f'https://www.{destination}/'
 
         #check if url is active
         try:
-            requests.get(url = destination).status_code
+            requests.get(url = destination)
         except:
+            #render error on page
             return "error"
         
+        #check if the url is already in the database
         path = ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=6))
-        print(request.base_url + path)
     else:
         return render_template("index.html")
 
