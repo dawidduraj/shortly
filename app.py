@@ -5,14 +5,19 @@ from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 import requests
 
+# constants
+PATH_LENGTH = 6
+# maximum (official) length of a URL according to www.sistrix.com/ask-sistrix/technical-seo/site-structure/url-length-how-long-can-a-url-be
+MAX_URL_LENGTH = 2048
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
 
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    source = db.Column(db.String(200), nullable=False)
-    path = db.Column(db.String(6), nullable=False)
+    source = db.Column(db.String(MAX_URL_LENGTH), nullable=False)
+    path = db.Column(db.String(PATH_LENGTH), nullable=False)
 
 @app.route("/", methods=["POST","GET"])
 def shorten():
@@ -29,7 +34,7 @@ def shorten():
             return "error"
         
         #check if the url is already in the database
-        path = ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=6))
+        path = ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=PATH_LENGTH))
     else:
         return render_template("index.html")
 
