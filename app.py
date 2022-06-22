@@ -19,12 +19,7 @@ def shorten():
     if request.method == "POST":
 
         #URL validate
-        destination = request.form["url"]
-        if("www." in destination):
-            destination = f'https://{destination}/'
-            print(destination)
-        elif ("https://" not in destination and "http://" not in destination):
-            destination = f'https://www.{destination}/'
+        destination = validatedUrl(request.form["url"])
 
         #check if url is active
         try:
@@ -43,11 +38,7 @@ def expand():
     if request.method == "POST":
 
         #URL validate
-        url = request.form["url"]
-        if("www." in url):
-            url = f'http://{url}/'
-        elif ("https://" not in url and "http://" not in url):
-            url = f'http://www.{url}/'
+        url = validatedUrl(request.form["url"])
         
         #make http request
         try:
@@ -66,6 +57,12 @@ def about():
 @app.route("/<path>")
 def forward(path):
     return redirect("http://google.de")
+
+
+def validatedUrl(url):
+    if ("https://" not in url and "http://" not in url):
+        return f'http://{url}/'
+    return url
 
 if __name__ == "__main__":
     app.run(debug=True)
