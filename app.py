@@ -31,7 +31,7 @@ def shorten():
             requests.get(url = destination)
         except:
             #render error on page
-            return "error"
+            return render_template("index.html", error=True, url=destination)
         
         #check if the url is already in the database
         path = ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=PATH_LENGTH))
