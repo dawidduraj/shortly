@@ -81,7 +81,7 @@ def forward(path):
 def validatedUrl(url):
     if ("https://" not in url and "http://" not in url):
         return f'http://{url}/'
-    return url
+    return url.strip()
 
 if __name__ == "__main__":
     app.run(debug=True)
