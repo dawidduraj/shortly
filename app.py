@@ -44,6 +44,10 @@ def shorten():
         while Link.query.filter_by(path=path).first():
             path = ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=PATH_LENGTH))  
         
+        #create Link object and commit it to database
+        shortcut = Link(source=destination, path=path)
+        db.session.add(shortcut)
+        db.session.commit()
     else:
         return render_template("index.html")
 
