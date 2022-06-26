@@ -48,6 +48,7 @@ def shorten():
         shortcut = Link(source=destination, path=path)
         db.session.add(shortcut)
         db.session.commit()
+        return render_template("index.html", success=True, url=shortcut.source, response= request.base_url + shortcut.path)
     else:
         return render_template("index.html")
 
