@@ -1,7 +1,8 @@
 from importlib.resources import path
 import random
 import string
-from flask import Flask, redirect, render_template, request, url_for
+from urllib import response
+from flask import Flask, redirect, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import requests
 
@@ -34,7 +35,11 @@ def shorten():
             return render_template("index.html", error=True, url=destination)
         
         #check if the url is already in the database
+        link = Link.query.filter_by(source=destination).first()
+        if link:
+            return render_template("index.html", success=True, url=destination, response= request.base_url + link.path)
         path = ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=PATH_LENGTH))
+        return "test"
     else:
         return render_template("index.html")
 
