@@ -37,7 +37,7 @@
     {% if error %}
       <br><p class="text-danger">The URL <a class="text-danger" href={{url}} style="font-weight: bold;">{{url}}</a> is invalid or could not be loaded.</p>
     {% elif success %}
-      <br><p class="text-success">The URL <a class="text-success" href={{url}} style="font-weight: bold;">{{url}}</a> points to <a class="text-success" href={{response}} style="font-weight: bold;">{{response}}</a></p>
+      <br><p class="text-success">The URL <a class="text-success" href={{response}} style="font-weight: bold;">{{response}}</a> points to <a class="text-success" href={{url}} style="font-weight: bold;">{{url}}</a></p>
     {% endif %}
   </div>
 </div>
