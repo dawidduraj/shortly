@@ -1,4 +1,3 @@
-from importlib.resources import path
 import random
 import string
 from urllib import response
