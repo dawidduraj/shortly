@@ -75,7 +75,10 @@ def about():
 @app.route("/<path>")
 def forward(path):
     destination = Link.query.filter_by(path=path).first()
-    return redirect(destination.source)
+    if destination:
+        return redirect(destination.source)
+    else: 
+        return redirect("/")
 
 
 def validatedUrl(url):
