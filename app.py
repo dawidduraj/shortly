@@ -75,7 +75,8 @@ def about():
 
 @app.route("/<path>")
 def forward(path):
-    return redirect("http://google.de")
+    destination = Link.query.filter_by(path=path).first()
+    return redirect(destination.source)
 
 
 def validatedUrl(url):
