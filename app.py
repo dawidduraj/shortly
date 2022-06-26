@@ -38,8 +38,12 @@ def shorten():
         link = Link.query.filter_by(source=destination).first()
         if link:
             return render_template("index.html", success=True, url=destination, response= request.base_url + link.path)
+        
+        #generate a random unused path
         path = ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=PATH_LENGTH))
-        return "test"
+        while Link.query.filter_by(path=path).first():
+            path = ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=PATH_LENGTH))  
+        
     else:
         return render_template("index.html")
 
