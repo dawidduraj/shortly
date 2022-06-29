@@ -27,9 +27,10 @@ class Link(db.Model):
 @app.route("/", methods=["POST","GET"])
 def shorten():
     if request.method == "POST":
-
         #URL validate
         destination = validatedUrl(request.form["url"])
+        if not recaptcha.verify():
+            return render_template("index.html", captchaError=True, url=destination)
 
         #check if url is active
         try:
@@ -59,10 +60,11 @@ def shorten():
 @app.route("/expand", methods=["POST","GET"])
 def expand():
     if request.method == "POST":
-
         #URL validate
         url = validatedUrl(request.form["url"])
         
+        if not recaptcha.verify():
+            return render_template("index.html", captchaError=True, url=url)
         #make http request
         try:
             response = requests.get(url = url)

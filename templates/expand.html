@@ -38,10 +38,12 @@
       <input type="submit" class="btn btn-secondary" value="Expand URL">
 
     </form>
-    {% if url and response %}
-      <br><p class="text-success">The URL <a class="text-success" href={{url}} style="font-weight: bold;">{{url}}</a> points to <a class="text-success" href={{response}} style="font-weight: bold;">{{response}}</a></p>
+    {% if captchaError%}
+      <br><p class="text-danger">Please complete the Captcha</p>
     {% elif url and not response%}
       <br><p class="text-danger">The URL <a class="text-danger" href={{url}} style="font-weight: bold;">{{url}}</a> is invalid or could not be loaded.</p>
+    {% elif url and response %}
+      <br><p class="text-success">The URL <a class="text-success" href={{url}} style="font-weight: bold;">{{url}}</a> points to <a class="text-success" href={{response}} style="font-weight: bold;">{{response}}</a></p>
     {% endif %}
   </div>
 </div>
