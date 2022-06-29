@@ -64,7 +64,7 @@ def expand():
         url = validatedUrl(request.form["url"])
         
         if not recaptcha.verify():
-            return render_template("index.html", captchaError=True, url=url)
+            return render_template("expand.html", captchaError=True, url=url)
         #make http request
         try:
             response = requests.get(url = url)
