@@ -10,9 +10,14 @@ PATH_LENGTH = 6
 # maximum (official) length of a URL according to www.sistrix.com/ask-sistrix/technical-seo/site-structure/url-length-how-long-can-a-url-be
 MAX_URL_LENGTH = 2048
 
+# Config
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
+app.config['RECAPTCHA_SITE_KEY'] = '6Ldph64gAAAAAFTO0cWCNTAZ8l_fPE0rj4sMrsMX'
+app.config['RECAPTCHA_SECRET_KEY'] = '6Ldph64gAAAAABcw1iZlMTJ9Y51bswHM1NmtuQYZ'
+recaptcha = ReCaptcha(app)
+
 
 class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
