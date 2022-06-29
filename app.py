@@ -1,9 +1,9 @@
 import random
 import string
-from urllib import response
 from flask import Flask, redirect, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import requests
+from flask_recaptcha import ReCaptcha
 
 # constants
 PATH_LENGTH = 6
