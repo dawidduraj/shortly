@@ -12,6 +12,7 @@
 - The Application checks, whether a URL has been already shorted and provides already existing links to save space.
 - The URL gets formatted into proper format before being shortened.
 - The generated Links do not have an expiration date.
+- Integrated ReCaptcha Verification helps avoid spam.
 
 ## Issues
 - Since the application is being hosted on a free platform, the domain is pretty long.
