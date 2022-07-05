@@ -20,4 +20,4 @@
 - The database has a size limit due to the hoster so after a while the application might not create new links.
 - The database is easily accessible, since this is an open source project only made for demonstration.
 
-The issues can be adressed by hosting the application properly on a dedicated private server.
+The issues can be addressed by hosting the application properly on a dedicated private server.
