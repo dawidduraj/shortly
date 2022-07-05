@@ -15,6 +15,7 @@
 - Integrated ReCaptcha Verification helps avoid spam.
 
 ## Issues
+- The Captcha API key is publicly exposed, which is a serious security issue. I am not hiding it since this application is only for demonstration purposes.
 - Since the application is being hosted on a free platform, the domain is pretty long.
 - The database has a size limit due to the hoster so after a while the application might not create new links.
 - The database is easily accessible, since this is an open source project only made for demonstration.
